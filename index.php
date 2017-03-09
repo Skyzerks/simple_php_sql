@@ -1,10 +1,22 @@
 <?php
+//entered the page
+session_start();
+
+//custom functions
+include_once 'index/helpers.php';
+//all configurations
+include_once 'index/config.php';
+//database connection
+include_once 'index/database.php';
+//SQL queries and other function helpers
+include_once 'index/repository.php';
+//routing
+include_once 'index/routing.php';
+//main logic
+include_once 'index/controller.php';
 
 
-// $insert = $db->prepare("INSERT INTO categories(`title`) VALUES(?)");
-
-
-include "faker.php";
+//include "random.php";
 
 // $db = new PDO('mysql:host=localhost;dbname=lesson9', 'student', 'secret_pass');
 // $insert = $db->prepare("INSERT INTO categories(`title`) VALUES(?)");

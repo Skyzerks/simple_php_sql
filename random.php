@@ -1,5 +1,8 @@
 <?php
-include "db.php";
+
+//file for making random input data in databasse
+
+include_once "index/database.php";
 $input_id = [];
 
 function rand_val( $val_name){
@@ -19,11 +22,11 @@ function rand_val( $val_name){
 
     //orders data
     //need user id, product id
-    $order_statuses = ['open', 'in progres', 'closed'];
+    $order_statuses = ['open', 'in progress', 'closed'];
 
     //reviews
     //need user id, product id
-    $review_texts = ['Great', 'Good', 'Normal', 'Bad', 'Auwfull'];
+    $review_texts = ['Great', 'Good', 'Normal', 'Bad', 'Awful'];
 
 
     switch($val_name){
@@ -59,9 +62,9 @@ function insertRow( $db, &$input_id, $table ) {
             'email' => rand_val('emails'),
             'password' => "'".md5(rand(1000,9999))."'",
             'login' => rand_val('logins'),
-            'last_activity' => "'".rand(2015,2016).'-'.rand(1,12).'-'.rand(1,28).' '.rand(0,23).':'.rand(0,59).':'.rand(0,59)."'",
-            'birth' => "'".rand(1980,2000).'-'.rand(1,12).'-'.rand(1,28).' '.rand(0,23).':'.rand(0,59).':'.rand(0,59)."'",
-            'age' => rand(10,90)
+            'last_activity' => "'".rand(2015,2016).'-'.rand(1,12).'-'.rand(1,28).' '.rand(0,23).':'.rand(0,59).':'.rand(0,59)."'" //,
+            //'birth' => "'".rand(1980,2000).'-'.rand(1,12).'-'.rand(1,28).' '.rand(0,23).':'.rand(0,59).':'.rand(0,59)."'",
+            //'age' => rand(10,90)
         ];
         break;
 
@@ -87,8 +90,8 @@ function insertRow( $db, &$input_id, $table ) {
         break;
     }
 
-    // var_dump("INSERT INTO ".$table."( ".join(',',array_keys($values))." ) VALUES( ".join(',',array_values($values))." )");
-    $db->exec("INSERT INTO ".$table."( ".join(',',array_keys($values))." ) VALUES( ".join(',',array_values($values))." )");
+    var_dump("INSERT INTO ".$table."( ".join(',',array_keys($values))." ) VALUES( ".join(',',array_values($values))." )"); echo '<br/>';
+    //$db->exec("INSERT INTO ".$table."( ".join(',',array_keys($values))." ) VALUES( ".join(',',array_values($values))." )");
 
     if( in_array($table,['users','categories','products']) ) {
         $input_id[$table][] = $db->lastInsertId();
@@ -100,8 +103,14 @@ function fakeDataInsert( $db, &$input_id, $table, $amount ) {
         insertRow( $db, $input_id, $table);
     }
 }
-fakeDataInsert( $db, $input_id, 'categories', 10 );
-fakeDataInsert( $db, $input_id, 'products', 500 );
-fakeDataInsert( $db, $input_id, 'users', 100 );
-fakeDataInsert( $db, $input_id, 'orders', 300 );
-fakeDataInsert( $db, $input_id, 'reviews', 200 );
+//fakeDataInsert( $db, $input_id, 'categories', 10 );
+//fakeDataInsert( $db, $input_id, 'products', 500 );
+//fakeDataInsert( $db, $input_id, 'users', 100 );
+//fakeDataInsert( $db, $input_id, 'orders', 300 );
+//fakeDataInsert( $db, $input_id, 'reviews', 200 );
+
+fakeDataInsert( $db, $input_id, 'categories', 1 );
+fakeDataInsert( $db, $input_id, 'products', 1 );
+fakeDataInsert( $db, $input_id, 'users', 1 );
+fakeDataInsert( $db, $input_id, 'orders', 1 );
+fakeDataInsert( $db, $input_id, 'reviews', 1 );

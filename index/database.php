@@ -1,13 +1,15 @@
 <?php
- 
+
+//file for connection to database 'dbname' on 'host' loged in as 'user' with password 'pass'
+
 // Configs
-define("HOST", "localhost"); //server address
-define("USER", "root");
-define("PASS", "1111");
-define("DBNAME", "base");
+define("host", "localhost"); //server address
+define("user", "root");
+define("pass", "1111");
+define("dbname", "base");
 // Connect to database
 try {
-  $db = new PDO("mysql:host=".HOST.";dbname=".DBNAME.";charset=utf8mb4", "".USER."", "".PASS."");
+  $db = new PDO("mysql:host=".host.";dbname=".dbname.";charset=utf8mb4", user, pass);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {

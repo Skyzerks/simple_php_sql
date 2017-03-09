@@ -1,0 +1,79 @@
+lesson-9
+
+MySQL
+
+„асть 1.
+
+”становить MySQL
+
+–абота с консолью: ( XAMPP does not have a pre build console to run php or mysql commands, so, you have to add to windows PATH environment variables, these 2: ;C:\xampp\mysql\bin;C:\xampp\php; )
+
+”становить пароль дл€ root-юзера ( XAMP - https://www.apachefriends.org/ru/faq_windows.html )
+
+—оздать базу данных дл€ своего проекта ( utf8mb4 - http://dev.mysql.com/doc/refman/5.7/en/charset-database.html )
+
+—оздать юзера дл€ своего проекта и предоставить права дл€ использовани€ базы (#2) ( http://dev.mysql.com/doc/refman/5.7/en/adding-users.html )
+
+—оздать таблицы InnoDB в бд (#2) с такой структурой: ( * создание таблиц: http://dev.mysql.com/doc/refman/5.7/en/create-table.html ) “аблицы:
+
+categories:
+id: primary, autoincrement
+title: varchar 255
+
+products:
+id: primary, autoincrement
+title: varchar 255
+description: text 5000
+price: integer 11
+category_id: integer 11 (id-шка категории)
+
+users:
+id: primary, autoincrement
+name: varchar 155
+role: enum (СadminТ,СcustomerТ)
+email: varchar 155
+password: varchar 255
+login: varchar 255
+last_activity: datetime
+
+orders:
+id: primary, autoincrement
+user_id: integer 11 (id-шка юзера)
+product_id: integer 11 (id-шки продукта)
+created_at: datetime
+delivered_at: datetime default: null
+status: enum (СopenТ,Тin progressТ,ТclosedТ)
+total_price: integres 11
+
+reviews:
+id: primary, autoincrement
+user_id: integer 11 (id-шка юзера)
+product_id: integer 11 (id-шки продукта)
+created_at: datetime
+text: text 5000
+rating: smallInt
+
+”становить phpMyAdmin ( на XAMPP есть ):
+
+¬ключить режим аутентификации через логин форму: http://stackoverflow.com/questions/17759776/how-to-get-login-option-for-phpmyadmin-in-xampp
+
+ќзнакомитьс€ с интерфейсом
+
+„асть 2.
+
+ѕодключить базу к проекту.
+—оздать php-скрипт чтобы заполнить таблицы произвольными данными (fake data).
+—оздать роут дл€ каталога и вывести категории (ссылками) и кажда€ категори€ должна вести на страницу с ее товарами.
+—оздать роут дл€ товаров. ƒобавить кнопку покупки дл€ товаров в каталоге и на странице товара.
+—оздать механизм аутентификации юзеров на основе бд: users (вместо файлов, как раньше): страницу логина и регистрации.
+—оздать механизм корзины на основе сессии. —оздать роут дл€ корзины, где выводить добавленные в нее товары и кнопку оформить заказ.
+≈сли юзер не залогин€нный, показывать форму дл€ контактных данных. »наче, сразу оформл€ть и брать данные юзера с бд.
+ќформление - бутстрап.
+
+„асть 3.
+
+—оздать CRUD админку с аутентификацией:
+ аталог: категории и товары
+ёзеры
+ќтзывы
+«аказы
