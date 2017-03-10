@@ -9,7 +9,10 @@ if($action=='catalog'){
     include 'controllers/controller_catalog.php';
 }
 else if($action=='product'){
-    include 'controllers/controller_product.php';
+        include 'controllers/controller_product.php';
+}
+else if($action=='basket'){
+    include 'controllers/controller_basket.php';
 }
 else{
     echo 'action= '.$action.'<br/>';
